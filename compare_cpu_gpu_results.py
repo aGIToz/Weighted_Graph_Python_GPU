@@ -30,7 +30,7 @@ print('cpu resut, the neighbors are from 30333 to 30338:', ngbrs_cpu[30333:30338
 diff = ngbrs_cpu - ngbrs_gpu
 non_zero = np.count_nonzero(diff)
 
-print('diff = ngbrs_cpu - ngbrs_gpu for 30333 to 30338:', ngbrs_gpu[30333:30338] -  ngbrs_cpu[30333:30338])
+print('diff in neighbors = ngbrs_cpu - ngbrs_gpu for 30333 to 30338:', ngbrs_gpu[30333:30338] -  ngbrs_cpu[30333:30338])
 print('non zero elements in diff of neighbors:', non_zero)
 
 # compare the weights now
@@ -44,6 +44,6 @@ wgts_cpu.sort(axis=-1)
 print('cpu resut, the weights from cpu for 30333 to 30338:', wgts_cpu[30333:30338])
 diff = wgts_cpu - wgts_gpu
 diff = np.around(diff, decimals= 5)
-print('diff = ngbrs_cpu - ngbrs_gpu for 30333 to 30338:', diff[30333:30338])
+print('diff in weights = wgts_cpu- wgts_gpu for 30333 to 30338:', diff[30333:30338])
 print('sum of all the elemets in abs(cpu_weights - gpu_weights):' , np.sum(np.sum(np.abs(diff))))
 print('contribution of each element in that sum is = sum / n:', np.sum(np.sum(np.abs(diff)))/(int (len(ngbrs_cpu)/args["k"])))
