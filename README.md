@@ -20,4 +20,5 @@ python3, scipy, numpy, open3d, pyopencl and bufferkdtree
 | 25          | 1.28 seconds    |       263.86 seconds       |
 
 This is when executed the same commands as above, the gpu used is nvidia gtx 1080 ti. The processor is i7-3.2gh, ram 16gb.
-A screen shot to check the output of the cpu and gpu are indeed very very close
+A screen shot to check the output of the cpu and gpu are indeed very very close. Observe that no errors in the neigbors and very small difference in the weights computed on cpu and gpu.
+![check](./data/check.png)
