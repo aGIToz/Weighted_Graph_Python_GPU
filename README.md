@@ -15,9 +15,9 @@ $ python compare_cpu_gpu_results.py -g_gpu ./graphs/graph_gpu.npz  -g_cpu ./grap
 python3, scipy, numpy, open3d, pyopencl and bufferkdtree
 
 ## Results
-| Time taken  | python gpu |     python cpu     |
-|:-----------:|:-------:|:----------------:|
-| 25          | 1.28 seconds    |       263.86 seconds       |
+|   | python gpu |     python cpu     | pdegraphsip |
+|:-----------:|:-------:|:----------------:|:----------------:|
+| Time taken         | 1.28 seconds    |       263.86 seconds       |   263.86 seconds       |
 
 This is when executed the same commands as above, the gpu used is nvidia gtx 1080 ti. The processor is i7-3.2gh, ram 16gb.
 A screen shot to check the output of the cpu and gpu are indeed very very close. Observe that no errors in the neigbors and very small difference in the weights computed on cpu and gpu.
