@@ -16,8 +16,8 @@ ap.add_argument("-p", "--position", type = str, required=True,
     help="path to 3d cordinates, npz format")
 ap.add_argument("-t", "--texture", type = str, required=True,
     help="path to the texture, for the moment just for gray scale, npz format")
-ap.add_argument("-k", "--k", type = int,  required=True,
-    help="number of nns")
+ap.add_argument("-k", "--k", type = int,  required=True, help="number of nns")
+ap.add_argument("-s", "--s", type = float,  required=True, help="scale value in the graph")
 args = vars(ap.parse_args())
     
 position = numpy.load(args["position"])    
@@ -57,14 +57,14 @@ ngbrs_gpu = ngbrs_gpu.astype('int32')
 
  # define the second input here which is the gray levels
 gray = np.load(args["texture"])                 
-gray = gray['gray']
+gray = gray['texture']
 gray = gray[0:]
 gray = 255*gray
 gray = gray.astype('float32')
  
 k = args["k"]
 n =len(gray)
-scale = 1
+scale = args["s"]
 
  # create the buffers on the device, intensity, nbgrs, weights
 mem_flags = cl.mem_flags
@@ -74,7 +74,7 @@ weight_vec = np.ndarray(shape=(n*k,), dtype=np.float32)
 weight_buf = cl.Buffer(context, mem_flags.WRITE_ONLY, weight_vec.nbytes)
 
  # run the kernel to compute the weights
-program.compute_weights(queue, (n,), None, intensity_buf, ngbrs_buf, weight_buf, np.int32(k), np.int32(scale))
+program.compute_weights(queue, (n,), None, intensity_buf, ngbrs_buf, weight_buf, np.int32(k), np.float32(scale))
 
 queue.finish()
 

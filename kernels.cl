@@ -1,7 +1,7 @@
 
 __kernel void compute_weights(__global float *gray, 
                 __global int *ngbrs_gpu,
-                __global float *weight_vec, const int k, const int scale)
+                __global float *weight_vec, const int k, const float scale)
 
 
 {
