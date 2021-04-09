@@ -10,7 +10,7 @@ ap.add_argument("-p", "--position", type = str, required=True,
 ap.add_argument("-t", "--texture", type = str, required=True,
     help="path to the texture, for the moment just for gray scale, npz format")
 ap.add_argument("-k", "--k", type = int,  required=True,
-    help="number of nns")
+ap.add_argument("-s", "--s", type = float, default=1, required=True, help="The scale (or sigma) in the rbf kernel")
 args = vars(ap.parse_args())
 
 
@@ -40,7 +40,7 @@ gray = gray[0:]
 gray = 255*gray
 gray = np.reshape(gray, gray.size)
 k = args["k"]
-scale = 1
+scale = args["s"]
 
 # from the neighbors make the graph
 spj = np.zeros((N * k))
@@ -53,6 +53,4 @@ end = time() - start
 print('time taken for building the graph on cpu :',end)
 
 # save your graph
-np.savez("./graphs/graph_cpu.npz",weights=my_spv, ngbrs=spj)
-
- 
+np.savez("./graphs/graph_cpu.npz",weights=my_spv, ngbrs=spj, k=k)

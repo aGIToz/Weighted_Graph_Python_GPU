@@ -84,4 +84,4 @@ end = time() - start
 
 print('total time taken by the gpu python:', end)
 # save the graph
-np.savez("./graphs/graph_gpu.npz",weights=weight_vec, ngbrs=ngbrs_gpu)
+np.savez("./graphs/graph_gpu.npz",weights=weight_vec, ngbrs=ngbrs_gpu, k=k)
